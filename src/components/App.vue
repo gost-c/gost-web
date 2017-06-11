@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <div class="container">
-      <h1>Welcome to gost</h1>
-      <h2 class="fade">zcong1993</h2>
+      <h1>Welcome to <code>gost</code></h1>
+      <hr/>
       <router-view></router-view>
     </div>
   </div>
@@ -16,25 +16,30 @@
 
 <!-- CSS libraries -->
 <style src="normalize.css/normalize.css"></style>
-<style src="highlight.js/styles/atom-one-dark.css"></style>
+<style src="highlight.js/styles/rainbow.css"></style>
 
 <!-- Global CSS -->
 <style>
-  pre code {
-    font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
-    font-size: 0.9em;
+  code {
+    font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
+    font-size: 1em!important;
     white-space: pre-wrap;
     color: #2c3e50;
+    border-radius: 0.3em;
   }
   html, body, #app {
     height: 100%;
   }
+  hr {
+    box-sizing: content-box;
+    height: 0;
+  }
+  pre {
+    margin-top: 0;
+  }
 </style>
 
 <style>
-  /*#app {
-    text-align: center;
-  }*/
   #app h1 {
     color: #2c3e50;
     font-weight: 300;
@@ -47,6 +52,8 @@
     padding-bottom: 20px;
     margin-right: auto;
     margin-left: auto;
+    padding-right: 4px;
+    padding-left: 4px;
     background-color: #f6f6f6;
   }
 
@@ -55,6 +62,9 @@
           padding-right: 15px;
           padding-left: 15px;
           width: 750px;
+      }
+      code {
+        line-height: 1.2em;
       }
   }
 

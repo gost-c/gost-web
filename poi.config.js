@@ -18,5 +18,8 @@ module.exports = {
   },
   presets: [
     require('poi-preset-bundle-report')()
-  ]
+  ],
+  env: {
+    API_URL: 'http://localhost:8000/gist/'
+  }
 }
