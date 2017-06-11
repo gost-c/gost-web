@@ -9,7 +9,8 @@
     "dev": "poi --port 3000",
     "build": "poi build",
     "report": "poi build --bundle-report",
-    "serve": "serve dist --single"
+    "serve": "surge -p dist",
+    "serve:gen": "npm run build && npm run serve"
   },
   "babel": {
     "presets": [

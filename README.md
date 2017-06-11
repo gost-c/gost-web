@@ -4,7 +4,7 @@
 
 ## Usage:
 
-see []()
+see [http://gost.surge.sh](http://gost.surge.sh)
 
 ---
 
