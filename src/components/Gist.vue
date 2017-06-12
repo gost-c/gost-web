@@ -52,7 +52,6 @@ export default {
           }
           this.data = data
           this.files = data.msg.files
-          console.log(data)
         })
     },
     highlight(file) {
