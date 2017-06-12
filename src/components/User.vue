@@ -64,7 +64,7 @@ export default {
       return Array.from([].slice.call(files), x => x.filename)
     },
     handleClick(gost) {
-      this.$router.push({ name: 'gist', params: { name: gost.hash }})
+      this.$router.push({ name: 'gost', params: { name: gost.hash }})
     },
     reset() {
       this.data = []

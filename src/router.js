@@ -1,13 +1,13 @@
 import VueRouter from 'vue-router'
-import Gist from './components/Gist.vue'
+import Gost from './components/Gost.vue'
 import User from './components/User.vue'
 
 export default new VueRouter({
   routes: [
     {
-      name: 'gist',
-      path: '/gist/:name',
-      component: Gist
+      name: 'gost',
+      path: '/gost/:name',
+      component: Gost
     },
     {
       name: 'user',

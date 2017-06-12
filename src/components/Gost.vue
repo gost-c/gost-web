@@ -29,7 +29,7 @@ import hljs from 'highlight.js'
 import tinydate from 'tinydate'
 
 export default {
-  name: 'gist',
+  name: 'gost',
   data() {
     return {
       data: '',
