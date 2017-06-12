@@ -3,7 +3,9 @@
     <div class="container">
       <h1>Welcome to <code>gost</code></h1>
       <hr/>
-      <router-view></router-view>
+      <transition name="fade">
+        <router-view></router-view>
+      </transition>
     </div>
   </div>
 </template>

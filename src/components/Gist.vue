@@ -1,14 +1,11 @@
 <template>
   <div id="gist">
-    <div v-if="msg" class="tip">
-      <span>Gist not exists!</span>
-    </div>
-    <div v-else>
+    <div v-if="files.length">
       <div class="author">
-        <p>Created by <code class="bg">{{data && data.msg.User.Username}}</code> at <code class="bg">{{data && format(data.msg.CreatedAt)}}</code>.</p>
+        <p>Created by <router-link :to="{'name': 'user', params:{name: data.msg.User.Username}}" class="bg link">{{data.msg.User.Username}}</router-link> at <code class="bg">{{data && $format(data.msg.CreatedAt)}}</code></p>
       </div>
       <div class="description fade">
-        <p>{{data && data.msg.description}}</p>
+        <p>{{data.msg.description}}</p>
       </div>
       <div v-for="(file, index) in files" :key="'file'+index">
         <div class="title">
@@ -18,15 +15,21 @@
         </code></pre>
       </div>
     </div>
+    <div v-else-if="msg" class="tip">
+      <span>{{msg}}</span>
+    </div>
+    <div v-else class="tip">
+      <span>Gist not exists!</span>
+    </div>
   </div>
 </template>
 
 <script>
 import hljs from 'highlight.js'
-import axios from 'axios'
-import dateFormat from 'dateformat'
+import tinydate from 'tinydate'
 
 export default {
+  name: 'gist',
   data() {
     return {
       data: '',
@@ -35,18 +38,25 @@ export default {
     }
   },
   mounted() {
-    const hash = this.$route.params.name
-    if (hash) {
-      const baseUrl = process.env.API_URL
-      this.getData(baseUrl + hash)
+    this.getData()
+  },
+  watch: {
+    '$route'() {
+      this.reset()
+      this.getData()
     }
   },
   methods: {
-    getData(url) {
-      return axios.get(url)
+    getData() {
+      const hash = this.$route.params.name
+      const baseUrl = process.env.API_URL + 'gist/'
+      if (!hash) {
+        return
+      }
+      return this.$fetch.get(baseUrl + hash)
         .then(d => {
           const data = d.data
-          if (data.code !== 200) {
+          if (data.code !== "200") {
             this.msg = data.msg
             return
           }
@@ -64,8 +74,10 @@ export default {
       }
       return res.value
     },
-    format(date) {
-      return dateFormat(date, 'yyyy-mm-dd, hh:MM TT')
+    reset() {
+      this.data = ''
+      this.files = []
+      this.msg = ''
     }
   }
 }
@@ -101,5 +113,12 @@ export default {
   .bg {
     background-color: rgba(27,31,35,.05);
     padding: 0.2em 0.2em;
+  }
+  .link {
+    text-decoration-line: none;
+    color: #42b983;
+  }
+  .link:hover {
+    text-decoration-line: underline;
   }
 </style>

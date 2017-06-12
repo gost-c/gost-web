@@ -20,7 +20,7 @@ module.exports = {
     require('poi-preset-bundle-report')()
   ],
   env: {
-    // API_URL: 'http://localhost:8000/gist/'
-    API_URL: 'http://gost.congz.pw/gist/'
+    // API_URL: 'http://localhost:8000/'
+    API_URL: 'http://gost.congz.pw/'
   }
 }

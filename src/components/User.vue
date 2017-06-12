@@ -1,0 +1,115 @@
+<template>
+  <div id="user">
+    <div v-if="true">
+      <div class="user">
+        <p>User :  <code>{{$route.params.name}}</code> has <code>{{data && data.length}}</code> gost{{data && data.length > 1 ? 's' : ''}}.</p>
+      </div>
+      <div class="gost" v-for="(gost, index) in data" :key="'user-gost' + index" @click="handleClick(gost)">
+        <div class="created-at fade">
+          <p>Created at <code>{{$format(gost.CreatedAt)}}</code></p>
+        </div>
+        <div class="description fade">
+          <p>{{gost.description}}</p>
+        </div>
+        <div class="files fade">
+          <p><code v-for="(file, i) in getFiles(gost.files)" :key="`gost-file-${index}-${i}`">{{file}} </code> </p>
+        </div>
+      </div>
+    </div>
+    <div v-else-if="msg" class="tip">
+      <span>{{msg}}</span>
+    </div>
+    <div v-else class="tip">
+      <span>User has no gist!</span>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'user',
+  data() {
+    return {
+      data: [],
+      msg: ''
+    }
+  },
+  mounted() {
+    this.getData()
+  },
+  watch: {
+    '$route'() {
+      this.reset()
+      this.getData()
+    }
+  },
+  methods: {
+    getData(url) {
+      const user = this.$route.params.name
+      const baseUrl = process.env.API_URL + 'user/'
+      if (!user) {
+        return
+      }
+      return this.$fetch.get(baseUrl + user)
+        .then(d => {
+          const data = d.data
+          if (data.code !== "200") {
+            this.msg = data.msg
+            return
+          }
+          this.data = data.msg
+        })
+    },
+    getFiles(files) {
+      return Array.from([].slice.call(files), x => x.filename)
+    },
+    handleClick(gost) {
+      this.$router.push({ name: 'gist', params: { name: gost.hash }})
+    },
+    reset() {
+      this.data = []
+      this.msg = ''
+    }
+  }
+}
+</script>
+
+<style scoped>
+.tip {
+    background: rgba(241, 249, 241, 0.83);
+    border: 0.1em solid #eee;
+    line-height: 34px;
+    padding-left: 6px;
+    border-radius: 0.3em;
+  }
+.description {
+  padding-left: 6px;
+  background: #A8D8B9;
+  line-height: 32px;
+  border-radius: 0.3em;
+}
+.user {
+  padding-left: 6px;
+  background: #FEDFE1;
+  line-height: 40px;
+  border-radius: 0.3em;
+}
+.files {
+  border: 0.1em solid #eee;
+  line-height: 20px;
+  padding-left: 6px;
+  background: #A5DEE4;
+  border-radius: 0.3em;
+}
+.created-at {
+  padding-left: 6px;
+}
+.gost {
+  background: #FFFFFB;
+  padding-top: 5px;
+  padding-bottom: 8px;
+  margin-bottom: 10px;
+  border-radius: 0.3em;
+  cursor: pointer;
+}
+</style>
