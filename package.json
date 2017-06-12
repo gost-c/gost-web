@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "gost-web",
-  "productName": "gost-web",
+  "productName": "gost",
   "description": "review website of gost",
   "version": "0.0.0",
   "license": "MIT",
