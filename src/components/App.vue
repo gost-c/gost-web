@@ -1,7 +1,7 @@
 <template>
-  <div id="app">
+  <div id="app" :style="{background}">
     <div class="container">
-      <h1>Welcome to <code>gost</code></h1>
+      <h1>Welcome to <router-link :to="{path: '/'}" class="link">gost</router-link></h1>
       <hr/>
       <transition name="fade" mode="out-in">
         <router-view></router-view>
@@ -11,8 +11,18 @@
 </template>
 
 <script>
+  const SL = ', 100%, 85%'
+  const bgc = 'linear-gradient(to left bottom, ' +
+    "hsl(" + (Math.floor(Math.random() * 255) + SL) + ") 0%," +
+    "hsl(" + (Math.floor(Math.random() * 255) + SL) + ") 100%)"
+
   export default {
-    name: 'app'
+    name: 'app',
+    data() {
+      return {
+        background: bgc
+      }
+    }
   }
 </script>
 
@@ -26,12 +36,15 @@
   code {
     font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
     font-size: 1em!important;
-    white-space: pre-wrap;
+    /*white-space: pre-wrap;*/
     color: #2c3e50;
     border-radius: 0.3em;
   }
-  html, body, #app {
+  html, body {
     height: 100%;
+  }
+  #app {
+    min-height: 100%;
   }
   hr {
     box-sizing: content-box;
@@ -46,6 +59,10 @@
   }
   .fade-enter, .fade-leave-active {
     opacity: 0
+  }
+  .link {
+    text-decoration-line: none;
+    color: #42b983;
   }
 </style>
 

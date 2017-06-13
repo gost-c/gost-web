@@ -114,10 +114,6 @@ export default {
     background-color: rgba(27,31,35,.05);
     padding: 0.2em 0.2em;
   }
-  .link {
-    text-decoration-line: none;
-    color: #42b983;
-  }
   .link:hover {
     text-decoration-line: underline;
   }
