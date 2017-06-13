@@ -19,7 +19,7 @@
       <span>{{msg}}</span>
     </div>
     <div v-else class="tip">
-      <span>Gist not exists!</span>
+      <span>Loading...</span>
     </div>
   </div>
 </template>
@@ -49,11 +49,11 @@ export default {
   methods: {
     getData() {
       const hash = this.$route.params.name
-      const baseUrl = process.env.API_URL + 'gist/'
+      const baseUrl = 'gist/'
       if (!hash) {
         return
       }
-      return this.$fetch.get(baseUrl + hash)
+      return this.$fetch(baseUrl + hash)
         .then(d => {
           const data = d.data
           if (data.code !== "200") {

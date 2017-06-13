@@ -3,7 +3,7 @@
     <div class="container">
       <h1>Welcome to <code>gost</code></h1>
       <hr/>
-      <transition name="fade">
+      <transition name="fade" mode="out-in">
         <router-view></router-view>
       </transition>
     </div>
@@ -18,6 +18,7 @@
 
 <!-- CSS libraries -->
 <style src="normalize.css/normalize.css"></style>
+<style src="nprogress/nprogress.css"></style>
 <style src="highlight.js/styles/rainbow.css"></style>
 
 <!-- Global CSS -->
@@ -38,6 +39,13 @@
   }
   pre {
     margin-top: 0;
+  }
+
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity .3s ease;
+  }
+  .fade-enter, .fade-leave-active {
+    opacity: 0
   }
 </style>
 

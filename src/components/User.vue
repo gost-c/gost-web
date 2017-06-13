@@ -1,6 +1,6 @@
 <template>
   <div id="user">
-    <div v-if="true">
+    <div v-if="data.length">
       <div class="user">
         <p>User :  <code>{{$route.params.name}}</code> has <code>{{data && data.length}}</code> gost{{data && data.length > 1 ? 's' : ''}}.</p>
       </div>
@@ -20,7 +20,7 @@
       <span>{{msg}}</span>
     </div>
     <div v-else class="tip">
-      <span>User has no gist!</span>
+      <span>Loading...</span>
     </div>
   </div>
 </template>
@@ -46,11 +46,11 @@ export default {
   methods: {
     getData(url) {
       const user = this.$route.params.name
-      const baseUrl = process.env.API_URL + 'user/'
+      const baseUrl = 'user/'
       if (!user) {
         return
       }
-      return this.$fetch.get(baseUrl + user)
+      return this.$fetch(baseUrl + user)
         .then(d => {
           const data = d.data
           if (data.code !== "200") {
