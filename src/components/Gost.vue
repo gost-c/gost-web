@@ -10,6 +10,7 @@
       <div v-for="(file, index) in files" :key="'file'+index">
         <div class="title">
           <span class="fade">{{file.filename}}</span>
+          <a :href="`${apiLink}${$route.params.name}/${file.filename}`" target="_blank" class="pull-right raw-link">Raw</a>
         </div>
         <pre><code v-html="highlight(file)" :class="file.filename.split('.').pop()" class="hljs">
         </code></pre>
@@ -34,7 +35,8 @@ export default {
     return {
       data: '',
       files: [],
-      msg: ''
+      msg: '',
+      apiLink: process.env.API_URL + 'raw/'
     }
   },
   mounted() {
@@ -116,5 +118,14 @@ export default {
   }
   .link:hover {
     text-decoration-line: underline;
+  }
+  .pull-right {
+    float: right;
+    margin-right: 2%;
+  }
+  .raw-link {
+    text-decoration-line: none;
+    font-size: 80%;
+    color: rgb(223, 117, 20);
   }
 </style>
