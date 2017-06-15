@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/github/gost-c/gost-web
     docker:
-      - image: circleci/node:8.1.1
+      - image: circleci/node:8.0.0
     steps:
       - checkout
       - run:
