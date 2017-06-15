@@ -1,0 +1,21 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/github/gost-c/gost-web
+    docker:
+      - image: circleci/node:8.1.1
+    steps:
+      - checkout
+      - run:
+          name: install yarn
+          command: 'curl -o- -L https://yarnpkg.com/install.sh | bash'
+      - run:
+          name: install-npm-wee
+          command: yarn
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - .node_modules
+      - run:
+          name: test
+          command: yarn test

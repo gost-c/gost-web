@@ -22,7 +22,7 @@ instance.interceptors.response.use(response => {
   return response
 }, Promise.reject)
 
-export default function(Vue) {
+export default function (Vue) {
   Vue.prototype.$fetch = instance
   Vue.prototype.$format = format
 }

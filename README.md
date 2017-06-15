@@ -1,5 +1,7 @@
 # gost-web
 
+[![CircleCI](https://img.shields.io/circleci/project/github/gost-c/gost-web.svg?style=flat-square)](https://circleci.com/gh/gost-c/gost-web)
+
 > review website of gost
 
 ## Usage:
@@ -8,7 +10,7 @@ see [http://gost.surge.sh](http://gost.surge.sh)
 
 ## Docs
 
-see [http://gost-docs.congz.pw](http://gost-docs.congz.pw)
+see [http://gost-doc.netlify.com](http://gost-doc.netlify.com)
 
 ---
 
