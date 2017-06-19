@@ -1,24 +1,21 @@
 import VueRouter from 'vue-router'
-import Index from './components/Index.vue'
-import Gost from './components/Gost.vue'
-import User from './components/User.vue'
 
 export default new VueRouter({
   routes: [
     {
       name: 'gost',
       path: '/gost/:name',
-      component: Gost
+      component: resolve => require(['./components/Gost.vue'], resolve)
     },
     {
       name: 'user',
       path: '/user/:name',
-      component: User
+      component: resolve => require(['./components/User.vue'], resolve)
     },
     {
       name: 'index',
       path: '/*',
-      component: Index
+      component: resolve => require(['./components/Index.vue'], resolve)
     }
   ]
 })
