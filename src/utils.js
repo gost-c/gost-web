@@ -36,6 +36,7 @@ export const mapping = {
   'Dockerfile': 'docker',
   go: 'go',
   graphql: 'graphql',
+  gql: 'graphql',
   h: 'c',
   haskell: 'haskell',
   ini: 'ini',
