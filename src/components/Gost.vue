@@ -12,8 +12,10 @@
           <span class="fade">{{file.filename}}</span>
           <a :href="`${apiLink}${$route.params.name}/${file.filename}`" target="_blank" class="pull-right raw-link">Raw</a>
         </div>
-        <pre><code v-html="highlight(file)" :class="file.filename.split('.').pop()" class="hljs">
-        </code></pre>
+        <div class="code-highlight">
+          <pre :class="'language-' + file.filename.split('.').pop()" ><code v-html="highlight(file)" :class="'language-' + file.filename.split('.').pop()">
+          </code></pre>
+        </div>
       </div>
     </div>
     <div v-else-if="msg" class="tip">
@@ -26,8 +28,8 @@
 </template>
 
 <script>
-import hljs from 'highlight.js'
 import tinydate from 'tinydate'
+import { prism, mapping } from '../utils'
 
 export default {
   name: 'gost',
@@ -68,13 +70,10 @@ export default {
     },
     highlight(file) {
       const extension = file.filename.split('.').pop()
-      let res
-      try {
-        res = hljs.highlight(extension, file.content)
-      } catch (err) {
-        res =hljs.highlightAuto(file.content)
-      }
-      return res.value
+      const lang = mapping[extension] || 'markup'
+      console.log(lang)
+      const res = prism.highlight(file.content, prism.languages[lang])
+      return res
     },
     reset() {
       this.data = ''
@@ -127,5 +126,9 @@ export default {
     text-decoration-line: none;
     font-size: 80%;
     color: rgb(223, 117, 20);
+  }
+  code[class*="language-"],
+  pre[class*="language-"] {
+    background: #e9e9e9!important;
   }
 </style>

@@ -29,7 +29,7 @@
 <!-- CSS libraries -->
 <style src="normalize.css/normalize.css"></style>
 <style src="nprogress/nprogress.css"></style>
-<style src="highlight.js/styles/rainbow.css"></style>
+<style src="prismjs/themes/prism.css"></style>
 
 <!-- Global CSS -->
 <style>
