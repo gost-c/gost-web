@@ -44,6 +44,9 @@
     "xo": "^0.18.2"
   },
   "xo": {
-    "extends": "vue-app"
+    "extends": "vue-app",
+    "rules": {
+      "import/no-unassigned-import": 0
+    }
   }
 }
