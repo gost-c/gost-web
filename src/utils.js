@@ -38,7 +38,7 @@ export const mapping = {
   graphql: 'graphql',
   gql: 'graphql',
   h: 'c',
-  haskell: 'haskell',
+  hs: 'haskell',
   ini: 'ini',
   jade: 'jade',
   java: 'java',
