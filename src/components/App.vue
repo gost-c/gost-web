@@ -1,7 +1,10 @@
 <template>
   <div id="app" :style="{background}">
     <div class="container">
-      <h1>Welcome to <router-link :to="{path: '/'}" class="link">gost</router-link></h1>
+      <div class="header">
+        <h1 class="inline">Welcome to <router-link :to="{path: '/'}" class="link">gost</router-link></h1>
+        <button class="pull-right button" @click="changeTheme">change theme</button>
+      </div>
       <hr/>
       <transition name="fade" mode="out-in">
         <router-view></router-view>
@@ -20,7 +23,54 @@
     name: 'app',
     data() {
       return {
-        background: bgc
+        background: bgc,
+        theme: 'prism.css',
+        themes: [
+          'prism.css',
+          'prism-coy.css',
+          'prism-okaidia.css',
+          'prism-solarizedlight.css',
+          'prism-tomorrow.css'
+        ]
+      }
+    },
+    mounted() {
+      const theme = localStorage.getItem('theme')
+      if (theme && theme !== 'prism.css') {
+        this.setTheme(theme)
+      }
+    },
+    methods: {
+      changeTheme() {
+        const theme = this.randomTheme()
+        this.setTheme(theme)
+      },
+      randomTheme() {
+        const index = Math.floor(Math.random() * this.themes.length)
+        const theme = this.themes[index]
+        if (theme === this.theme) {
+          return this.randomTheme()
+        }
+        return theme
+      },
+      async setTheme(theme) {
+        const url = `/themes/${theme}`
+        const data = await this.$axios(url)
+        const styleEl = this.getThemeElm()
+        styleEl.innerHTML = data.data
+        this.theme = theme
+        localStorage.setItem('theme', theme)
+      },
+      getThemeElm() {
+        const themeId = 'theme'
+        let styleEl = document.getElementById(themeId)
+        if (styleEl) {
+          return styleEl
+        }
+        styleEl = document.createElement('style')
+        styleEl.id = themeId
+        document.head.appendChild(styleEl)
+        return styleEl
       }
     }
   }
@@ -63,6 +113,24 @@
   .link {
     text-decoration-line: none;
     color: #42b983;
+  }
+  .inline {
+    display: inline;
+  }
+  .pull-right {
+    float: right;
+  }
+  .button {
+    background: rgb(66, 184, 221);
+    padding: .5em 1em;
+    border-radius: 4px;
+    display: inline-block;
+    zoom: 1;
+    vertical-align: middle;
+    color: #fff;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    font-weight: 100;
   }
 </style>
 

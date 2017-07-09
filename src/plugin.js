@@ -25,4 +25,5 @@ instance.interceptors.response.use(response => {
 export default function (Vue) {
   Vue.prototype.$fetch = instance
   Vue.prototype.$format = format
+  Vue.prototype.$axios = axios
 }
