@@ -6,16 +6,15 @@ jobs:
       - image: circleci/node:8.0.0
     steps:
       - checkout
-      - run:
-          name: install yarn
-          command: 'curl -o- -L https://yarnpkg.com/install.sh | bash'
+      - restore_cache:
+          key: dependency-cache-{{ checksum "yarn.lock" }}
       - run:
           name: install-npm-wee
           command: yarn
       - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
+          key: dependency-cache-{{ checksum "yarn.lock" }}
           paths:
-            - .node_modules
+            - ./node_modules
       - run:
           name: test
           command: yarn test
