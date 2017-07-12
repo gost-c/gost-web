@@ -2,8 +2,8 @@
   "private": true,
   "name": "gost-web",
   "productName": "gost",
-  "description": "review website of gost",
-  "version": "0.0.0",
+  "description": "Review website of gost",
+  "version": "0.0.1",
   "license": "MIT",
   "scripts": {
     "dev": "poi --port 3000",
