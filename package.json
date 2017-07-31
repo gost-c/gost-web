@@ -26,6 +26,8 @@
   },
   "dependencies": {
     "axios": "^0.16.2",
+    "clipboard": "^1.7.1",
+    "native-toast": "^1.2.1",
     "normalize.css": "^7.0.0",
     "nprogress": "^0.2.0",
     "object-assign": "^4.1.1",
@@ -33,6 +35,8 @@
     "promise-polyfill": "^6.0.2",
     "tinydate": "^1.0.0",
     "vue": "^2.3.4",
+    "vue-js-modal": "^1.2.6",
+    "vue-qrcode": "xkeshi/vue-qrcode",
     "vue-router": "^2.5.3"
   },
   "devDependencies": {

@@ -11,6 +11,14 @@
         <div class="title">
           <span class="fade">{{file.filename}}</span>
           <a :href="`${apiLink}${$route.params.name}/${file.filename}`" target="_blank" class="pull-right raw-link">Raw</a>
+          <img src="/qrcode.svg" alt="qrcode" class="qrcode-icon pull-right" @click="showQRCode">
+          <div class="pull-right btn"
+           :data-clipboard-text="file.content"
+           @mouseover="initClipboard"
+           @mouseout="destroyClipboard"
+          >
+          <img src="/copy.svg" alt="copy" class="clippy" width="13">
+          </div>
         </div>
         <div class="code-highlight">
           <pre :class="'language-' + file.filename.split('.').pop()" ><code v-html="highlight(file)" :class="'language-' + file.filename.split('.').pop()">
@@ -24,11 +32,16 @@
     <div v-else class="tip">
       <span>Loading...</span>
     </div>
+    <modal name="qrcode" :width="250" :height="250">
+      <qrcode :value="currentUrl" :options="{ size: 200 }" class="qrcode"></qrcode>
+    </modal>
   </div>
 </template>
 
 <script>
 import tinydate from 'tinydate'
+import Clipboard from 'clipboard'
+import toast from 'native-toast'
 import { prism, mapping } from '../utils'
 
 export default {
@@ -38,11 +51,14 @@ export default {
       data: '',
       files: [],
       msg: '',
-      apiLink: process.env.API_URL + 'raw/'
+      apiLink: process.env.API_URL + 'raw/',
+      clipboard: null,
+      currentUrl: window.location.href
     }
   },
   mounted() {
     this.getData()
+    // this.$modal.show('qrcode')
   },
   watch: {
     '$route'() {
@@ -71,7 +87,6 @@ export default {
     highlight(file) {
       const extension = file.filename.split('.').pop()
       const lang = mapping[extension] || 'markup'
-      console.log(lang)
       const res = prism.highlight(file.content, prism.languages[lang])
       return res
     },
@@ -79,11 +94,31 @@ export default {
       this.data = ''
       this.files = []
       this.msg = ''
+    },
+    initClipboard({ currentTarget }) {
+      this.clipboard = new Clipboard(currentTarget)
+
+      this.clipboard.on('success', e => {
+        toast({ message: `Copied !`, type: 'success' })
+      })
+      this.clipboard.on('error', e => {
+        toast({ message: 'Failed to copy !', type: 'error' })
+      })
+    },
+    destroyClipboard() {
+      if (this.clipboard) {
+        this.clipboard.destroy()
+        this.clipboard = null
+      }
+    },
+    showQRCode() {
+      this.$modal.show('qrcode')
     }
   }
 }
 </script>
 
+<style src="native-toast/dist/native-toast.css"></style>
 <style scoped>
   .title {
     border: 0.1em solid #eee;
@@ -130,5 +165,24 @@ export default {
   code[class*="language-"],
   pre[class*="language-"] {
     background: #e9e9e9!important;
+  }
+  .clippy {
+    margin-top: -3px;
+    position: relative;
+    top: 3px;
+  }
+  .btn {
+    cursor: pointer;
+  }
+  .qrcode {
+    margin: 25px;
+  }
+  .qrcode-icon {
+    margin-top: -3px;
+    position: relative;
+    top: 7px;
+    height: 25px;
+    width: 16px;
+    cursor: pointer;
   }
 </style>
