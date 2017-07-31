@@ -1166,15 +1166,7 @@ cli-width@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/cli-width/-/cli-width-2.1.0.tgz#b234ca209b29ef66fc518d9b98d5847b00edf00a"
 
-clipboard@^1.5.5:
-  version "1.7.1"
-  resolved "https://registry.yarnpkg.com/clipboard/-/clipboard-1.7.1.tgz#360d6d6946e99a7a1fef395e42ba92b5e9b5a16b"
-  dependencies:
-    good-listener "^1.2.2"
-    select "^1.1.2"
-    tiny-emitter "^2.0.0"
-
-clipboard@^1.7.1:
+clipboard@^1.5.5, clipboard@^1.7.1:
   version "1.7.1"
   resolved "https://registry.npmjs.org/clipboard/-/clipboard-1.7.1.tgz#360d6d6946e99a7a1fef395e42ba92b5e9b5a16b"
   dependencies:
@@ -4752,6 +4744,10 @@ q@1.4.1, q@^1.1.2:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/q/-/q-1.4.1.tgz#55705bcd93c5f3673530c2c2cbc0c2b3addc286e"
 
+qrious@^4.0.2:
+  version "4.0.2"
+  resolved "https://registry.npmjs.org/qrious/-/qrious-4.0.2.tgz#09c4d4079d2b961617f62c69cff3b9bb66a39693"
+
 qs@6.4.0, qs@~6.4.0:
   version "6.4.0"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.4.0.tgz#13e26d28ad6b0ffaa91312cd3bf708ed351e7233"
@@ -5838,6 +5834,10 @@ vue-hot-reload-api@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/vue-hot-reload-api/-/vue-hot-reload-api-2.1.0.tgz#9ca58a6e0df9078554ce1708688b6578754d86de"
 
+vue-js-modal@^1.2.6:
+  version "1.2.6"
+  resolved "https://registry.npmjs.org/vue-js-modal/-/vue-js-modal-1.2.6.tgz#1697b366f4aaac56bf499e678f4bc1d1dd9722fe"
+
 vue-loader@^12.1.0:
   version "12.2.1"
   resolved "https://registry.yarnpkg.com/vue-loader/-/vue-loader-12.2.1.tgz#53f27c0973d386768f5a75156f4129b5efc6ba55"
@@ -5855,6 +5855,12 @@ vue-loader@^12.1.0:
     vue-hot-reload-api "^2.1.0"
     vue-style-loader "^3.0.0"
     vue-template-es2015-compiler "^1.2.2"
+
+vue-qrcode@xkeshi/vue-qrcode:
+  version "0.2.0"
+  resolved "https://codeload.github.com/xkeshi/vue-qrcode/tar.gz/474157c0dd233c2123cc36a554382a2fd8ff77a3"
+  dependencies:
+    qrious "^4.0.2"
 
 vue-router@^2.5.3:
   version "2.5.3"
