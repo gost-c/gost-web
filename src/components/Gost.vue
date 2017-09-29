@@ -11,6 +11,7 @@
         <div class="title">
           <span class="fade">{{file.filename}}</span>
           <a :href="`${apiLink}${$route.params.name}/${file.filename}`" target="_blank" class="pull-right raw-link">Raw</a>
+          <span class="pull-right raw-link btn" @click="saveImage(index)">Save</span>
           <img src="/qrcode.svg" alt="qrcode" class="qrcode-icon pull-right" @click="showQRCode">
           <div class="pull-right btn"
            :data-clipboard-text="file.content"
@@ -20,7 +21,7 @@
           <img src="/copy.svg" alt="copy" class="clippy" width="13">
           </div>
         </div>
-        <div class="code-highlight">
+        <div class="code-highlight" :id="'code'+index">
           <pre :class="'language-' + file.filename.split('.').pop()" ><code v-html="highlight(file)" :class="'language-' + file.filename.split('.').pop()">
           </code></pre>
         </div>
@@ -39,6 +40,8 @@
 </template>
 
 <script>
+import { v4 } from 'uuid'
+import domtoimage from 'dom-to-image'
 import tinydate from 'tinydate'
 import Clipboard from 'clipboard'
 import toast from 'native-toast'
@@ -113,6 +116,18 @@ export default {
     },
     showQRCode() {
       this.$modal.show('qrcode')
+    },
+    saveImage(index) {
+      const dom = document.getElementById(`code${index}`)
+      return dom && domtoimage.toPng(dom)
+        .then(dataUrl => {
+          const link = document.createElement('a')
+          link.download = `gost-${v4()}.png`
+          link.href = dataUrl
+          document.body.appendChild(link)
+          link.click()
+          link.remove()
+        })
     }
   }
 }
