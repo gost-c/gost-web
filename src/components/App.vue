@@ -83,9 +83,11 @@
 
 <!-- Global CSS -->
 <style>
+  @import url(https://cdn.rawgit.com/tonsky/FiraCode/1.204/distr/fira_code.css);
   code {
-    font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
+    font-family: Fira Code, Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif!important;
     font-size: 1em!important;
+    font-variant-ligatures: contextual;
     /*white-space: pre-wrap;*/
     color: #2c3e50;
     border-radius: 0.3em;
