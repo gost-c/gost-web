@@ -30,7 +30,8 @@
           'prism-coy.css',
           'prism-okaidia.css',
           'prism-solarizedlight.css',
-          'prism-tomorrow.css'
+          'prism-tomorrow.css',
+          'prism-onedark.css'
         ]
       }
     },
