@@ -66,7 +66,7 @@ jobs:
           name: push to production
           command: |
             yarn global add surge
-            yarn serve
+            surge -p dist --token $SURGE_TOKEN
   staging:
     <<: *default
     steps:
