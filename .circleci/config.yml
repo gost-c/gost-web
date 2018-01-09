@@ -1,20 +1,109 @@
+default: &default
+  workdir_root: &workdir_root
+    /root/gost-web
+
+  docker:
+    - image: node:8.9.4
+  working_directory: *workdir_root
+
+  attach_workspace: &attach_workspace
+    attach_workspace:
+      at: *workdir_root
+
+  restore_cache: &restore_cache
+    restore_cache:
+      keys:
+        - v1-dependencies-{{ checksum "package.json" }}
+        # fallback to using the latest cache if no exact match is found
+        - v1-dependencies-
+
+  save_cache: &save_cache
+    save_cache:
+      paths:
+        - node_modules
+      key: v1-dependencies-{{ checksum "package.json" }}
+
 version: 2
 jobs:
-  build:
-    working_directory: ~/github/gost-c/gost-web
-    docker:
-      - image: circleci/node:8.0.0
+  test:
+    <<: *default
     steps:
       - checkout
-      - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-      - run:
-          name: install-npm-wee
-          command: yarn
-      - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-          paths:
-            - ./node_modules
+      # Download and cache dependencies
+      - *restore_cache
+      - run: npm install
+      - *save_cache
       - run:
           name: test
-          command: yarn test
+          command: npm run test
+
+  build:
+    <<: *default
+    steps:
+      - checkout
+      # Download and cache dependencies
+      - *restore_cache
+      - run: npm install
+      - *save_cache
+      - run:
+          name: build
+          command: npm run build
+      - store_artifacts:
+          path: /root/gost-web/dist
+      - persist_to_workspace:
+          # Must be an absolute path, or relative path from working_directory
+          root: *workdir_root
+          # Must be relative path from root
+          paths:
+            - dist
+
+  deploy:
+    <<: *default
+    steps:
+      - checkout
+      - *attach_workspace
+      - run:
+          name: push to production
+          command: |
+            npm install -g surge
+            npm run serve
+  staging:
+    <<: *default
+    steps:
+      - checkout
+      - *attach_workspace
+      - run:
+          name: push to staging
+          command: |
+            npm install -g netlify-cli
+            netlify deploy -p dist -s 44019934-f939-426c-983b-0efaf593ef0d -t $NETLIFY_TOKEN
+workflows:
+  version: 2
+  build-n-deploy:
+    jobs:
+      - test:
+          filters:
+            tags:
+              only: /.*/
+      - build:
+          requires:
+            - test
+          filters:
+            tags:
+              only: /.*/
+      - staging:
+          context: org-global
+          requires:
+            - build
+          filters:
+            tags:
+              ignore: /^v.*/
+      - deploy:
+          context: org-global
+          requires:
+            - build
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/
