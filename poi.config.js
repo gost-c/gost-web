@@ -20,7 +20,7 @@ module.exports = {
     ]
   },
   presets: [
-    require('poi-preset-bundle-report')()
+    require('poi-preset-offline')()
   ],
   env: {
     // API_URL: 'http://localhost:8000/'
