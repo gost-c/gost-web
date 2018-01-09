@@ -31,11 +31,11 @@ jobs:
       - checkout
       # Download and cache dependencies
       - *restore_cache
-      - run: npm install
+      - run: yarn
       - *save_cache
       - run:
           name: test
-          command: npm run test
+          command: yarn test
 
   build:
     <<: *default
@@ -43,11 +43,11 @@ jobs:
       - checkout
       # Download and cache dependencies
       - *restore_cache
-      - run: npm install
+      - run: yarn
       - *save_cache
       - run:
           name: build
-          command: npm run build
+          command: yarn build
       - store_artifacts:
           path: /root/gost-web/dist
       - persist_to_workspace:
@@ -65,8 +65,8 @@ jobs:
       - run:
           name: push to production
           command: |
-            npm install -g surge
-            npm run serve
+            yarn global add surge
+            yarn serve
   staging:
     <<: *default
     steps:
@@ -75,7 +75,7 @@ jobs:
       - run:
           name: push to staging
           command: |
-            npm install -g netlify-cli
+            yarn global add netlify-cli
             netlify deploy -p dist -s 44019934-f939-426c-983b-0efaf593ef0d -t $NETLIFY_TOKEN
 workflows:
   version: 2
