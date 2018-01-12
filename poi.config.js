@@ -14,13 +14,8 @@ module.exports = {
     description: pkg.descrption,
     template: path.join(__dirname, 'index.ejs')
   },
-  postcss: {
-    plugins: [
-      // Your postcss plugins
-    ]
-  },
   presets: [
-    require('poi-preset-offline')()
+    require('poi-preset-sw-precache')()
   ],
   env: {
     // API_URL: 'http://localhost:8000/'
