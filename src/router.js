@@ -5,17 +5,17 @@ export default new VueRouter({
     {
       name: 'gost',
       path: '/gost/:name',
-      component: resolve => require(['./components/Gost.vue'], resolve)
+      component: () => import('./components/Gost.vue')
     },
     {
       name: 'user',
       path: '/user/:name',
-      component: resolve => require(['./components/User.vue'], resolve)
+      component: () => import('./components/User.vue')
     },
     {
       name: 'index',
       path: '/*',
-      component: resolve => require(['./components/Index.vue'], resolve)
+      component: () => import('./components/Index.vue')
     }
   ]
 })
