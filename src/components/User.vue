@@ -6,7 +6,7 @@
       </div>
       <div class="gost" v-for="(gost, index) in data" :key="'user-gost' + index" @click="handleClick(gost)">
         <div class="created-at fade">
-          <p>Created at <code>{{$format(gost.CreatedAt)}}</code></p>
+          <p>Created at <code>{{$format(gost.created_at)}}</code></p>
         </div>
         <div class="description fade">
           <p>{{gost.description}}</p>
@@ -30,7 +30,7 @@ export default {
   name: 'user',
   data() {
     return {
-      data: [],
+      data: {},
       msg: ''
     }
   },
@@ -46,25 +46,27 @@ export default {
   methods: {
     getData(url) {
       const user = this.$route.params.name
-      const baseUrl = 'user/'
+      const baseUrl = '/api/gosts/'
       if (!user) {
         return
       }
       return this.$fetch(baseUrl + user)
         .then(d => {
           const data = d.data
-          if (data.code !== "200") {
-            this.msg = data.msg
+          if (!data.success) {
+            this.msg = data.message
             return
           }
-          this.data = data.msg
+          this.data = data.data.sort((a, b) => {
+            return new Date(a.created_at).getTime() < new Date(b.created_at).getTime()
+          })
         })
     },
     getFiles(files) {
       return Array.from([].slice.call(files), x => x.filename)
     },
     handleClick(gost) {
-      this.$router.push({ name: 'gost', params: { name: gost.hash }})
+      this.$router.push({ name: 'gost', params: { name: gost.id }})
     },
     reset() {
       this.data = []

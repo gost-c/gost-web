@@ -2,15 +2,15 @@
   <div id="gist">
     <div v-if="files.length">
       <div class="author">
-        <p>Created by <router-link :to="{'name': 'user', params:{name: data.msg.User.Username}}" class="bg link">{{data.msg.User.Username}}</router-link> at <code class="bg">{{data && $format(data.msg.CreatedAt)}}</code></p>
+        <p>Created by <router-link :to="{'name': 'user', params:{name: data.data.user.username}}" class="bg link">{{data.data.user.username}}</router-link> at <code class="bg">{{data && $format(data.data.created_at)}}</code></p>
       </div>
       <div class="description fade">
-        <p>{{data.msg.description}}</p>
+        <p>{{data.data.description}}</p>
       </div>
       <div v-for="(file, index) in files" :key="'file'+index">
         <div class="title">
           <span class="fade">{{file.filename}}</span>
-          <a :href="`${apiLink}${$route.params.name}/${file.filename}`" target="_blank" class="pull-right raw-link">Raw</a>
+          <a :href="`${apiLink}${$route.params.name}/${file.id}`" target="_blank" class="pull-right raw-link">Raw</a>
           <span class="pull-right raw-link btn" @click="saveImage(index)">Save</span>
           <img src="/qrcode.svg" alt="qrcode" class="qrcode-icon pull-right" @click="showQRCode">
           <div class="pull-right btn"
@@ -54,7 +54,7 @@ export default {
       data: '',
       files: [],
       msg: '',
-      apiLink: process.env.API_URL + 'raw/',
+      apiLink: process.env.API_URL + 'api/raw/gost/',
       clipboard: null,
       currentUrl: window.location.href
     }
@@ -72,19 +72,19 @@ export default {
   methods: {
     getData() {
       const hash = this.$route.params.name
-      const baseUrl = 'gist/'
+      const baseUrl = 'api/gost/'
       if (!hash) {
         return
       }
       return this.$fetch(baseUrl + hash)
         .then(d => {
           const data = d.data
-          if (data.code !== "200") {
-            this.msg = data.msg
+          if (!data.success) {
+            this.msg = data.message
             return
           }
           this.data = data
-          this.files = data.msg.files
+          this.files = data.data.files
         })
     },
     highlight(file) {
