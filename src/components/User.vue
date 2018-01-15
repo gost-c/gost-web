@@ -30,7 +30,7 @@ export default {
   name: 'user',
   data() {
     return {
-      data: {},
+      data: [],
       msg: ''
     }
   },
@@ -55,6 +55,10 @@ export default {
           const data = d.data
           if (!data.success) {
             this.msg = data.message
+            return
+          }
+          if (data.data == null) {
+            this.msg = 'User has no gosts here.'
             return
           }
           this.data = data.data.sort((a, b) => {
