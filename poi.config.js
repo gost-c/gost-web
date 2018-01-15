@@ -18,7 +18,7 @@ module.exports = {
     require('poi-preset-sw-precache')()
   ],
   env: {
-    // API_URL: 'http://localhost:8000/'
-    API_URL: 'http://gost.congz.pw/'
+    // API_URL: 'http://localhost:9393/'
+    API_URL: 'https://iuao0sjxmi.execute-api.ap-southeast-1.amazonaws.com/development/'
   }
 }
