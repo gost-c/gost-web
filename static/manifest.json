@@ -1,5 +1,8 @@
 {
-    "name": "",
+    "name": "Gost",
+    "short_name": "Gost",
+    "start_url": "./",
+    "orientation": "portrait",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
