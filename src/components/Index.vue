@@ -1,10 +1,10 @@
 <template>
   <div id="index">
     <div class="description section">
-      <p><code>gost</code> 是一个可以快速分享代码、文档的服务，类似于 <a href="https://gist.github.com" target="_blank" class="link">gist</a>。并且它有自己的命令行客户端工具 <a href="https://github.com/gost-c/gost-cli" target="_blank" class="link">gost-cli</a>。</p>
+      <p><code>gost</code> 是一个可以快速分享代码、文档的服务，类似于 <a href="https://gist.github.com" target="_blank" class="link">gist</a>。并且它有自己的命令行客户端工具 <a href="https://github.com/gost-c/gost-cli" target="_blank" class="link" rel="noopener">gost-cli</a>。</p>
       <p>由于核心后端和命令行都是由 <code>go语言</code> 写的， 所以取名 <code>gost</code> .</p>
-      <p>项目主页 <a href="https://github.com/gost-c" target="_blank" class="link"> https://github.com/gost-c</a></p>
-      <p>完整文档请查看<a href="http://gost-docs.congz.pw" target="_blank" class="link"> http://gost-docs.congz.pw</a></p>
+      <p>项目主页 <a href="https://github.com/gost-c" target="_blank" class="link" rel="noopener"> https://github.com/gost-c</a></p>
+      <p>完整文档请查看<a href="http://gost-docs.congz.pw" target="_blank" class="link" rel="noopener"> http://gost-docs.congz.pw</a></p>
     </div>
     <div class="section search">
       <p class="search-title">搜索用户所有 <code>gost</code> : </p>

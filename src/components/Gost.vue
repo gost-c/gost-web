@@ -10,7 +10,7 @@
       <div v-for="(file, index) in files" :key="'file'+index">
         <div class="title">
           <span class="fade">{{file.filename}}</span>
-          <a :href="`${apiLink}${$route.params.name}/${file.id}`" target="_blank" class="pull-right raw-link">Raw</a>
+          <a :href="`${apiLink}${$route.params.name}/${file.id}`" target="_blank" class="pull-right raw-link" rel="noopener">Raw</a>
           <span class="pull-right raw-link btn" @click="saveImage(index)">Save</span>
           <img src="/qrcode.svg" alt="qrcode" class="qrcode-icon pull-right" @click="showQRCode">
           <div class="pull-right btn"
