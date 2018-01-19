@@ -7,12 +7,16 @@
       <p>完整文档请查看<a href="http://gost-docs.congz.pw" target="_blank" class="link" rel="noopener"> http://gost-docs.congz.pw</a></p>
     </div>
     <div class="section search">
-      <p class="search-title">搜索用户所有 <code>gost</code> : </p>
-      <input class="input" v-model="user" @keyup.enter="changeRouter('user')"/>
+      <label for="user">
+        <p class="search-title">搜索用户所有 <code>gost</code> : </p>
+      </label>
+      <input class="input" id="user" v-model="user" @keyup.enter="changeRouter('user')"/>
     </div>
     <div class="section search">
-      <p class="search-title">搜索 <code>gost</code> : </p>
-      <input class="input" v-model="hash" @keyup.enter="changeRouter('hash')"/>
+      <label for="hash">
+        <p class="search-title">搜索 <code>gost</code> : </p>
+      </label>
+      <input class="input" id="hash" v-model="hash" @keyup.enter="changeRouter('hash')"/>
     </div>
   </div>
 </template>
