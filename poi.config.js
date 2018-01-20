@@ -12,10 +12,34 @@ module.exports = {
   html: {
     title: pkg.productName,
     description: pkg.descrption,
-    template: path.join(__dirname, 'index.ejs')
+    template: path.join(__dirname, 'index.ejs'),
+    inject: true
   },
   presets: [
-    require('poi-preset-sw-precache')()
+    require('poi-preset-sw-precache')(),
+    require('poi-preset-bundle-report')(),
+    require('./plugins/auto-dll')({
+      debug: true,
+      inject: true,
+      filename: '[name]_[hash].js',
+      path: './dll',
+      entry: {
+        vendor: [
+          'vue',
+          'axios',
+          'clipboard',
+          'dom-to-image',
+          'native-toast',
+          'nprogress',
+          'prismjs',
+          'promise-polyfill',
+          'tinydate',
+          'vue-js-modal',
+          'vue-qrcode',
+          'vue-router'
+        ]
+      }
+    })
   ],
   env: {
     // API_URL: 'http://localhost:9393/'
