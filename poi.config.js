@@ -39,7 +39,8 @@ module.exports = {
           'vue-router'
         ]
       }
-    })
+    }),
+    require('./plugins/hard-source')()
   ],
   env: {
     // API_URL: 'http://localhost:9393/'

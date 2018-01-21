@@ -40,6 +40,7 @@
     "autodll-webpack-plugin": "^0.3.8",
     "babel-preset-vue-app": "^2.0.0",
     "eslint-config-vue-app": "^1.3.3",
+    "hard-source-webpack-plugin": "^0.5.16",
     "poi": "^9.6.12",
     "poi-preset-bundle-report": "^2.0.2",
     "poi-preset-sw-precache": "^1.0.0",
