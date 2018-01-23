@@ -44,6 +44,7 @@
     "poi": "^9.6.12",
     "poi-preset-bundle-report": "^2.0.2",
     "poi-preset-sw-precache": "^1.0.0",
+    "uglifyjs-webpack-plugin": "^1.1.6",
     "xo": "^0.18.2"
   },
   "xo": {

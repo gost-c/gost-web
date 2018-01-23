@@ -40,7 +40,8 @@ module.exports = {
         ]
       }
     }),
-    require('./plugins/hard-source')()
+    require('./plugins/hard-source')(),
+    require('./plugins/uglify')()
   ],
   env: {
     // API_URL: 'http://localhost:9393/'
