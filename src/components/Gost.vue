@@ -2,7 +2,15 @@
   <div id="gist">
     <div v-if="files.length">
       <div class="author">
-        <p>Created by <router-link :to="{'name': 'user', params:{name: data.data.user.username}}" class="bg link">{{data.data.user.username}}</router-link> at <code class="bg">{{data && $format(data.data.created_at)}}</code></p>
+        <p>Created by <router-link :to="{'name': 'user', params:{name: data.data.user.username}}" class="bg link">{{data.data.user.username}}</router-link> at <code class="bg">{{data && $format(data.data.created_at)}}</code>
+          <span class="pull-right raw-link btn btn-link"
+            :data-clipboard-text="$route.params.name"
+            @mouseover="initClipboard"
+            @mouseout="destroyClipboard"
+          >
+            Copy DeleteId
+          </span>
+        </p>
       </div>
       <div class="description fade">
         <p>{{data.data.description}}</p>
@@ -199,5 +207,8 @@ export default {
     height: 25px;
     width: 16px;
     cursor: pointer;
+  }
+  .btn-link {
+    color: #6A4C9C;
   }
 </style>
