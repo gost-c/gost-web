@@ -86,7 +86,7 @@
 <style>
   @import '../fonts/fira_code.css';
   code {
-    font-family: Fira Code, Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif!important;
+    font-family: Fira Code, -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"!important;
     font-size: 1em!important;
     font-variant-ligatures: contextual;
     /*white-space: pre-wrap;*/
