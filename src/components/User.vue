@@ -57,13 +57,11 @@ export default {
             this.msg = data.message
             return
           }
-          if (data.data == null) {
+          if (data.data == null || !Array.isArray(data.data)) {
             this.msg = 'User has no gosts here.'
             return
           }
-          this.data = data.data.sort((a, b) => {
-            return new Date(a.created_at).getTime() < new Date(b.created_at).getTime()
-          })
+          this.data = data.data.reverse()
         })
     },
     getFiles(files) {
