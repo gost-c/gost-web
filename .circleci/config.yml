@@ -76,7 +76,7 @@ jobs:
           name: push to staging
           command: |
             yarn global add netlify-cli
-            netlify deploy -p dist -s 44019934-f939-426c-983b-0efaf593ef0d -t $NETLIFY_TOKEN
+            NETLIFY_AUTH_TOKEN=$NETLIFY_TOKEN NETLIFY_SITE_ID=44019934-f939-426c-983b-0efaf593ef0d netlify deploy --dir dist
 workflows:
   version: 2
   build-n-deploy:
