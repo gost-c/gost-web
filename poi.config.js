@@ -45,6 +45,6 @@ module.exports = {
   ],
   env: {
     // API_URL: 'http://localhost:9393/'
-    API_URL: 'https://iuao0sjxmi.execute-api.ap-southeast-1.amazonaws.com/development/'
+    API_URL: 'https://api.gost.zcong.me/'
   }
 }
