@@ -3,7 +3,7 @@ default: &default
     /root/gost-web
 
   docker:
-    - image: node:8.9.4
+    - image: node:8.10.0
   working_directory: *workdir_root
 
   attach_workspace: &attach_workspace
