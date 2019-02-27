@@ -24,6 +24,7 @@ import 'prismjs/components/prism-scss'
 import 'prismjs/components/prism-sql'
 import 'prismjs/components/prism-swift'
 import 'prismjs/components/prism-yaml'
+import 'prismjs/components/prism-typescript'
 
 export const prism = Prism
 
@@ -58,5 +59,6 @@ export const mapping = {
   sh: 'bash',
   sql: 'sql',
   swift: 'swift',
+  ts: 'ts',
   yml: 'yaml'
 }
