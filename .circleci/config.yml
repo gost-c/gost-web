@@ -91,19 +91,19 @@ workflows:
           filters:
             tags:
               only: /.*/
-      - staging:
-          context: org-global
-          requires:
-            - build
-          filters:
-            tags:
-              ignore: /^v.*/
-      - deploy:
-          context: org-global
-          requires:
-            - build
-          filters:
-            tags:
-              only: /^v.*/
-            branches:
-              ignore: /.*/
+      # - staging:
+      #     context: org-global
+      #     requires:
+      #       - build
+      #     filters:
+      #       tags:
+      #         ignore: /^v.*/
+      # - deploy:
+      #     context: org-global
+      #     requires:
+      #       - build
+      #     filters:
+      #       tags:
+      #         only: /^v.*/
+      #       branches:
+      #         ignore: /.*/
